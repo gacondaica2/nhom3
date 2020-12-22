@@ -5,3 +5,7 @@
 + Lỗi: "No Application Encryption Key Has Been Specified"
 1. Chạy lệnh php artisan key:generate
 2. Chạy lệnh php artisan config:cache.
+
++ Lỗi: Miration kết nối đến database cũ.
+1. Cập nhật file .env.
+2. Chạy lệnh php artisan config:cache.
