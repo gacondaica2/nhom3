@@ -225,4 +225,10 @@ class CategoryController extends Controller
             ]);
         }
     }
+
+    //tìm kiếm danh mục
+    public function search()
+    {
+        
+    }
 }
