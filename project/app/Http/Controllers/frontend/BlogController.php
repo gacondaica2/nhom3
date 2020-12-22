@@ -41,7 +41,7 @@ class BlogController extends Controller
             abort(404);
         }
     }
-
+// tìm tin tức 
     public function find(Request $request) {
         try {
             $records = Page::where('title', 'like', '%'.$request->search.'%')->with('media')->paginate(8);
@@ -52,5 +52,6 @@ class BlogController extends Controller
             abort(404);
         }
     }
+    //end tim tin tức
     
 }
