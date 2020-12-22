@@ -16,21 +16,21 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function index()
-    // {
-    //     try {
-    //         $categories_parent = Categories::where('parent_id', '0')->get();
-    //         if( count($categories_parent) <= 0) throw new \Exception('Chưa có danh mục!');
-    //         return view('backend.category.create')->with([
-    //             'parent' => $categories_parent
-    //         ]);
-    //     }catch(\Exception $e) {
-    //         return redirect()->back()->with([      
-    //             "messages"  => $e->getMessage(), 
-    //             'color'     => 'alert-danger'
-    //         ]);
-    //     }
-    // }
+    public function index()
+    {
+        try {
+            $categories_parent = Categories::where('parent_id', '0')->get();
+            if( count($categories_parent) <= 0) throw new \Exception('Chưa có danh mục!');
+            return view('backend.category.create')->with([
+                'parent' => $categories_parent
+            ]);
+        }catch(\Exception $e) {
+            return redirect()->back()->with([      
+                "messages"  => $e->getMessage(), 
+                'color'     => 'alert-danger'
+            ]);
+        }
+    }
 
     /**
      * Show the form for creating a new resource.
