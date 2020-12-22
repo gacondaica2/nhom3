@@ -124,10 +124,24 @@ class PageController extends Controller
     {
         try {
             $record = Page::find($id);
-            
+            if( is_null($record)) throw new \Exception('Tin tức không tồn tại!');
+            $validator = Validator::make($request->all(),[
+                'title'         => 'required',
+                'content'       => 'required',
+                'description'   => 'required'
+            ]);
             if( $validator->fails()) throw new \Exception('Nhập đầy đủ thông tin!');
             DB::beginTransaction();
-            
+            if( $request->hasFile('avatar'))
+            {
+                $avatar = Media::find($record->avatar_id);
+                if( is_null($avatar)) throw new \Exception('Hình ảnh không tồn tại!');
+                Storage::delete('public/images/'.$avatar->title);
+                $request->avatar->storeAs('public\images', date("Y-m-d").date("h-i-sa").$request->avatar->getClientOriginalName());
+                $avatar->title = date("Y-m-d").date("h-i-sa").$request->avatar->getClientOriginalName();
+                $avatar->save();
+                $record->avatar_id      = $avatar->id;
+            }
             $record->user_id        = Auth::user()->id;
             $record->content        = $request->content;
             $record->title          = $request->title;
