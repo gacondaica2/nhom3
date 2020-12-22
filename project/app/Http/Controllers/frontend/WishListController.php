@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class WishListController extends Controller
 {
-    public function index() {
+    public function yeuthich() {
         try {
             if(!Auth::check()) throw new \Exception('Tài khoản chưa đăng nhập');
             $user_wishlist = wishlish::where('user_id', Auth::user()->id)->first();
@@ -51,7 +51,7 @@ class WishListController extends Controller
                 }
                 if( $flag == 1) throw new \Exception('Sản phẩm đã ở trong danh sách yêu thích!');
                 $wishlish->product_id = $wishlish->product_id.','.$record->id;
-                $wishlish->save();
+                // $wishlish->save();
             }
             return redirect()->back()->with([
                 "messages" => 'Thêm vào danh sách yêu thích thành công!', 
