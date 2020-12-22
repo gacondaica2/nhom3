@@ -51,7 +51,7 @@ class WishListController extends Controller
                 }
                 if( $flag == 1) throw new \Exception('Sản phẩm đã ở trong danh sách yêu thích!');
                 $wishlish->product_id = $wishlish->product_id.','.$record->id;
-                // $wishlish->save();
+                $wishlish->save();
             }
             return redirect()->back()->with([
                 "messages" => 'Thêm vào danh sách yêu thích thành công!', 
