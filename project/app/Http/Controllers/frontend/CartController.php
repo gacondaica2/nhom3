@@ -172,28 +172,28 @@ class CartController extends Controller
         //
     }
 
-    // public function add($id, Request $request) {
-    //     try {       
-    //         $item = Product::find($id);
-    //         if( empty($item)) throw new \Exception('Sản phẩm không tồn tại!');
-    //         $item = [
-    //             'id'            => $item->id,
-    //             'name'          => $item->title,
-    //             'price'         => ($item->price_sale > 0) ? $item->price_sale : $item->price,
-    //             'quantity'      => (!empty($request->quantity))? $request->quantity : 1,
-    //             'attributes'    => $item
-    //         ];
-    //         $record = Cart::add($item);
-    //         return response()->json([
-    //             'messages' => 'success',
-    //             'item'      => ( count(Cart::getContent()) > 0) ? (Cart::getContent()) :0,
-    //             'total'     => ( count(Cart::getContent()) > 0) ? (Cart::getTotal()) :0,
-    //             'quantity' => Cart::getTotalQuantity()
-    //         ]);
-    //     }catch(\Exception $e) {
-    //         dd($e->getMessage());
-    //     }
-    // }
+    public function add($id, Request $request) {
+        try {       
+            $item = Product::find($id);
+            if( empty($item)) throw new \Exception('Sản phẩm không tồn tại!');
+            $item = [
+                'id'            => $item->id,
+                'name'          => $item->title,
+                'price'         => ($item->price_sale > 0) ? $item->price_sale : $item->price,
+                'quantity'      => (!empty($request->quantity))? $request->quantity : 1,
+                'attributes'    => $item
+            ];
+            $record = Cart::add($item);
+            return response()->json([
+                'messages' => 'success',
+                'item'      => ( count(Cart::getContent()) > 0) ? (Cart::getContent()) :0,
+                'total'     => ( count(Cart::getContent()) > 0) ? (Cart::getTotal()) :0,
+                'quantity' => Cart::getTotalQuantity()
+            ]);
+        }catch(\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     
     // public function delete($id) {
     //     try {
