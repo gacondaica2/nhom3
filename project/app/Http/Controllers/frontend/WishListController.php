@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class WishListController extends Controller
 {
-    public function yeuthich() {
+    public function index() {
         try {
             if(!Auth::check()) throw new \Exception('Tài khoản chưa đăng nhập');
             $user_wishlist = wishlish::where('user_id', Auth::user()->id)->first();
