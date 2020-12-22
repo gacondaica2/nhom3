@@ -52,6 +52,6 @@ class BlogController extends Controller
             abort(404);
         }
     }
-    //end tim tin tức
+    //end tim tin tức 
     
 }
