@@ -110,7 +110,21 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
+public function edit($id)
+    {
+        try {
+            $record = Page::find($id);
+            if( is_null($record)) throw new \Exception('Tin tức không tồn tại!');
+            return view('backend.page.edit')->with([
+                'record' => $record
+            ]);
+        }catch(\Exception $e) {
+            return redirect()->back()->with([      
+                "messages" => $e->getMessage(), 
+                'color' => 'alert-danger'
+            ]);
+        }
+    }
 
 
     /**
