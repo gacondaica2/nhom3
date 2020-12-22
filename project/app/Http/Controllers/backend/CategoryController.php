@@ -38,25 +38,25 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function create(Request $request)
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $category           = new Categories();
-    //         $category->title    = $request->title;
-    //         $category->slug     = \Str::slug($request->title);
-    //         $category->status   = $request->status;
-    //         $category->parent_id = (isset($request->parent)) ? 0 : $request->childrent;
-    //         $category->save();
-    //         DB::commit();
-    //         return redirect()->route('categoryall');
-    //     }catch(\Exception $e) {
-    //         return redirect()->back()->with([      
-    //             "messages"  => $e->getMessage(), 
-    //             'color'     => 'alert-danger'
-    //         ]);
-    //     }
-    // }
+    public function create(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $category           = new Categories();
+            $category->title    = $request->title;
+            $category->slug     = \Str::slug($request->title);
+            $category->status   = $request->status;
+            $category->parent_id = (isset($request->parent)) ? 0 : $request->childrent;
+            $category->save();
+            DB::commit();
+            return redirect()->route('categoryall');
+        }catch(\Exception $e) {
+            return redirect()->back()->with([      
+                "messages"  => $e->getMessage(), 
+                'color'     => 'alert-danger'
+            ]);
+        }
+    }
 
     /**
      * Store a newly created resource in storage.
