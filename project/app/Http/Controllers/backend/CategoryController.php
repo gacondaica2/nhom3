@@ -194,22 +194,22 @@ class CategoryController extends Controller
         }
     }
 
-    // public function ediInterface($id) {
-    //     try {
-    //         $category = Categories::where('id', $id)->first();
-    //         if( empty($category)) throw new \Exception('Danh mục không tồn tại!');
-    //         $parent = Categories::where('parent_id', 0)->get();
-    //         return view('backend.category.detail')->with([
-    //             'category'  => $category,
-    //             'parent'    => $parent
-    //         ]);
-    //     }catch(\Exception $e) {
-    //         return redirect()->back()->with([      
-    //             "messages"  => $e->getMessage(), 
-    //             'color'     => 'alert-danger'
-    //         ]);
-    //     }
-    // }
+    public function ediInterface($id) {
+        try {
+            $category = Categories::where('id', $id)->first();
+            if( empty($category)) throw new \Exception('Danh mục không tồn tại!');
+            $parent = Categories::where('parent_id', 0)->get();
+            return view('backend.category.detail')->with([
+                'category'  => $category,
+                'parent'    => $parent
+            ]);
+        }catch(\Exception $e) {
+            return redirect()->back()->with([      
+                "messages"  => $e->getMessage(), 
+                'color'     => 'alert-danger'
+            ]);
+        }
+    }
 
     public function apiCategory($id) {
         try {
