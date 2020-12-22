@@ -25,26 +25,11 @@ class BlogController extends Controller
             abort(404);
         }
     }
-    public function detail($id) {
-        try {
-            $record = Page::where('id', $id)
-            ->with([
-                'media' => function($query) {}
-            ])->first();
-            SEOMeta::setTitle($record->title);
-            SEOMeta::setDescription($record->description);
-            SEOMeta::setCanonical('https://storemobile.xyz');
-            return view('frontend.blog.detail')->with([
-                'record' => $record
-            ]);
-        }catch(\Exception $e) {
-            abort(404);
-        }
-    }
+
 // tìm tin tức 
     public function find(Request $request) {
         try {
-            $records = Page::where('title', 'like', '%'.$request->search.'%')->with('media')->paginate(8);
+            $records = Page::where('title', 'like', $request->search)->with('media')->paginate(8);
             return view('frontend.blog.blogs')->with([
                 'records' => $records
             ]);
