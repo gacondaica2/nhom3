@@ -87,33 +87,33 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function edit($id, Request $request)
-    // {
-    //     try {
-    //         DB::beginTransaction();
-    //         $validator = Validator::make($request->all(),[
-    //             'title'     => 'required'
-    //         ]);
-    //         if( $validator->fails()) throw new \Exception('Nhập thông tin đầy đủ!');
-    //         $item = Categories::find($id);
-    //         if( empty($item)) throw new \Exception('Danh mục vừa chỉnh sửa không tồn tại');
-    //         $item->title        = $request->title;
-    //         $item->parent_id    = ( isset($request->parent)) ? 0 : $request->childrent;
-    //         $item->status       =  $request->status;
-    //         $item->description  = $request->description;
-    //         $item->save();
-    //         DB::commit();
-    //         return redirect()->back()->with([      
-    //             "messages"  => 'Cập nhật dữ liệu thành công!', 
-    //             'color'     => 'alert-success'
-    //         ]);;
-    //     }catch(\Exception $e) {
-    //         return redirect()->back()->with([      
-    //             "messages"  => $e->getMessage(), 
-    //             'color'     => 'alert-danger'
-    //         ]);
-    //     }
-    // }
+    public function edit($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $validator = Validator::make($request->all(),[
+                'title'     => 'required'
+            ]);
+            if( $validator->fails()) throw new \Exception('Nhập thông tin đầy đủ!');
+            $item = Categories::find($id);
+            if( empty($item)) throw new \Exception('Danh mục vừa chỉnh sửa không tồn tại');
+            $item->title        = $request->title;
+            $item->parent_id    = ( isset($request->parent)) ? 0 : $request->childrent;
+            $item->status       =  $request->status;
+            $item->description  = $request->description;
+            $item->save();
+            DB::commit();
+            return redirect()->back()->with([      
+                "messages"  => 'Cập nhật dữ liệu thành công!', 
+                'color'     => 'alert-success'
+            ]);;
+        }catch(\Exception $e) {
+            return redirect()->back()->with([      
+                "messages"  => $e->getMessage(), 
+                'color'     => 'alert-danger'
+            ]);
+        }
+    }
 
     /**
      * Update the specified resource in storage.
