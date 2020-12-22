@@ -26,6 +26,23 @@ class BlogController extends Controller
         }
     }
 
+ public function detail($id) {
+        try {
+            $record = Page::where('id', $id)
+            ->with([
+                'media' => function($query) {}
+            ])->first();
+            SEOMeta::setTitle($record->title);
+            SEOMeta::setDescription($record->description);
+            SEOMeta::setCanonical('https://storemobile.xyz');
+            return view('frontend.blog.detail')->with([
+                'record' => $record
+            ]);
+        }catch(\Exception $e) {
+            abort(404);
+        }
+    }
+
 // tìm tin tức 
     public function find(Request $request) {
         try {
