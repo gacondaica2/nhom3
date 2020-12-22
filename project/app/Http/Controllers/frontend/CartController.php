@@ -195,16 +195,16 @@ class CartController extends Controller
         }
     }
     
-    // public function delete($id) {
-    //     try {
-    //         $item = Product::find($id);
-    //         if( empty($item)) throw new \Exception('Sản phẩm không tồn tại!');
-    //         $record = Cart::remove($id);
-    //         return redirect()->back();
-    //     }catch(\Exception $e) {
-    //         dd($e->getMessage());
-    //     }
-    // }
+    public function delete($id) {
+        try {
+            $item = Product::find($id);
+            if( empty($item)) throw new \Exception('Sản phẩm không tồn tại!');
+            $record = Cart::remove($id);
+            return redirect()->back();
+        }catch(\Exception $e) {
+            dd($e->getMessage());
+        }
+    }
     public function apidelete($id) {
         try {
             $item = Product::find($id);
