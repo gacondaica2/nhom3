@@ -134,39 +134,39 @@ class CategoryController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    // public function destroy($id)
-    // {
-    //     try {
-    //         $record = Categories::where('id', $id)->with([
-    //             'childrent' => function($query) {},
-    //             'product'   => function($query) {}
-    //         ])->first();
-    //         DB::beginTransaction();
-    //         if( count($record->childrent) > 0) {
-    //             foreach($record->childrent as $childrent) {
-    //                 route('delete_category', $childrent->id);
-    //             }
-    //         }
-    //         if( count($record->product) > 0) {
-    //             foreach($record->product as $product) {
-    //                 route('delete_product', $product->id);
-    //             }
-    //         }
-    //         if( empty($record) ) throw new \Exception('Danh mục không tồn tại!');
-    //         $record->delete();
-    //         DB::commit();
-    //         return redirect()->back()->with([      
-    //             "messages"  => 'Xoá danh mục thành công', 
-    //             'color'     => 'alert-success'
-    //         ]);
-    //     }catch(\Exception $e)
-    //     {
-    //         return redirect()->back()->with([      
-    //             "messages"  => $e->getMessage(), 
-    //             'color'     => 'alert-danger'
-    //         ]);
-    //     }
-    // }
+    public function destroy($id)
+    {
+        try {
+            $record = Categories::where('id', $id)->with([
+                'childrent' => function($query) {},
+                'product'   => function($query) {}
+            ])->first();
+            DB::beginTransaction();
+            if( count($record->childrent) > 0) {
+                foreach($record->childrent as $childrent) {
+                    route('delete_category', $childrent->id);
+                }
+            }
+            if( count($record->product) > 0) {
+                foreach($record->product as $product) {
+                    route('delete_product', $product->id);
+                }
+            }
+            if( empty($record) ) throw new \Exception('Danh mục không tồn tại!');
+            $record->delete();
+            DB::commit();
+            return redirect()->back()->with([      
+                "messages"  => 'Xoá danh mục thành công', 
+                'color'     => 'alert-success'
+            ]);
+        }catch(\Exception $e)
+        {
+            return redirect()->back()->with([      
+                "messages"  => $e->getMessage(), 
+                'color'     => 'alert-danger'
+            ]);
+        }
+    }
 
     public function interface() {
         try {
