@@ -46,7 +46,7 @@ class BlogController extends Controller
 // tìm tin tức 
     public function find(Request $request) {
         try {
-            $records = Page::where('title', 'like', $request->search)->with('media')->paginate(8);
+            $records = Page::where('title', 'like', '%'.$request->search.'%')->with('media')->paginate(8);
             return view('frontend.blog.blogs')->with([
                 'records' => $records
             ]);
