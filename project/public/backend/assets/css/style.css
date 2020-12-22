@@ -1,0 +1,15 @@
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+  height: 1000px;
+}
+.input-parent {
+  position: relative;
+}
+.custom-file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}

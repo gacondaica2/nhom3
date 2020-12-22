@@ -1,0 +1,95 @@
+categories: {
+    id , 
+    title ,
+    slug , 
+    status, 
+    parent_id(parent_id ở đây là quan hệ cha con giữa các category với nhau)
+},
+ product : {
+    id,
+    title(ten san pham), 
+    slug(duong dan chi tiet),
+    sku(ma san pham), price(gia), 
+    price_sale(gia khuyen mai),
+    qty(so luong),avatar_id(hình ảnh chính),
+    media_id(danh sách hình ảnh đi kèm),
+    category_id(khoá ngoai, 
+    quan hệ với danh mục nào),
+    weight(khối lượng),
+    width(chiều rộng),
+    height(chiều cao),
+    length(chiều dài)
+ }
+// laravel có sẵn user 
+
+//page để giới thiệu cty hoặc trang web
+page: {
+    id, user_id(id của admin mới có quyền thay đổi), slug(đường dẫn), title(tiêu đề), content(nội dung)
+}
+
+//media nơi lưu danh sách hình ảnh
+media: {
+    id, title, name(tên của hình ảnh), size, demissions(chiều dài và chiều rộng của hình), type(loại hình ảnh)
+}
+
+//order đơn hàng
+order: {
+    id, 
+    user_id(id của khách hàng đặt), 
+    sub_total(tổng tiền đơn hàng, 
+    chưa tỉnh phí vận chuyển), 
+    delivery_fee(phí giao hàng), 
+    total(tổng tiền), 
+    paymod(hình thức thanh toán đơn hàng), 
+    status(trạng thái đơn hàng 0: chờ xử lí, 1 xác nhận, 2 đang giao), 
+    note(lưu ý của khách hàng khi đặt hàng)
+}
+
+//order_deliveries địa chỉ và giao hàng của khách hàng
+order_deliveries: {
+    id,
+    order_id(khoa ngoại với order),
+    name( tên người đặt hàng),
+    provinde_id(tỉnh or thành phố),
+    dictrict_id(quận huyện),
+    ward_id(phường xã),
+    address(địa chỉ chi tiết),
+    phone(sdt),
+    email
+}
+
+//order_detail chi tiết đơn hàng . quan hệ giữa order với order_detail là 1 nhiều
+order_detail:{
+    id,
+    order_id(khoá ngoại),
+    name(tên sản phẩm),
+    price(giá sản phẩm)
+}
+
+//order_history lịch sử đơn đặt hàng 
+order_history: {
+    id,order_id, title, status(trạng thái của đơn hàng trên hệ thống)
+}
+
+//provinde tỉnh , thành phố
+provinde: {
+    id, 
+    ghn_id(id của giao hàng nhanh),
+    name(tên tỉnh, thành phố),
+}
+
+//district tên quận huyện
+district: {
+    id, 
+    ghn_id(id của giao hàng nhanh),
+    name(tên quận , huyện),
+    provinde_id(khoá ngoại với provinde)
+}
+
+//ward : xã phường
+ward: {
+    id, 
+    name, 
+    ghn_id,
+    district_id
+}
