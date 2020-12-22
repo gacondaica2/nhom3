@@ -1,3 +1,7 @@
-Kết nối postgresql:
++ Kết nối postgresql:
 1. Xóa dấu ";" phía trước "extension=pdo_pgsql" và "extension=pgsql" trong php.ini.
+2. Chạy lệnh php artisan config:cache.
+
++ Lỗi: "No Application Encryption Key Has Been Specified"
+1. Chạy lệnh php artisan key:generate
 2. Chạy lệnh php artisan config:cache.
