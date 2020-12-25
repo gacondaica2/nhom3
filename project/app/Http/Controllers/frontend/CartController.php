@@ -26,7 +26,8 @@ class CartController extends Controller
      */
     public function index()
     {
-       try {           
+       try {     
+           dd('day la trang thanh toan')   ;         
             $records = Province::all();
             SEOMeta::setTitle('Giỏ hàng');
             SEOMeta::setDescription('Trang chủ');
