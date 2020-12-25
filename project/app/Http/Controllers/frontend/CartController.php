@@ -24,20 +24,21 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //    try {           
-    //         $records = Province::all();
-    //         SEOMeta::setTitle('Giỏ hàng');
-    //         SEOMeta::setDescription('Trang chủ');
-    //         SEOMeta::setCanonical('https://storemobile.xyz');
-    //        return view('frontend.cart.checkout')->with([
-    //            'records' => $records
-    //        ]);
-    //    }catch(\Exception $e) {
-    //        dd($e->getMessage());
-    //    }
-    // }
+    public function index()
+    {
+       try {     
+           dd('day la trang thanh toan')   ;   
+            $records = Province::all();
+            SEOMeta::setTitle('Giỏ hàng');
+            SEOMeta::setDescription('Trang chủ');
+            SEOMeta::setCanonical('https://storemobile.xyz');
+           return view('frontend.cart.checkout')->with([
+               'records' => $records
+           ]);
+       }catch(\Exception $e) {
+           dd($e->getMessage());
+       }
+    }
 
     /**
      * Show the form for creating a new resource.
